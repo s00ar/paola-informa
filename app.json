@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "v1",
-    "slug": "v1",
+    "name": "Paola Informa",
+    "slug": "paolainforma",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "v1",
+    "scheme": "pf",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -43,6 +43,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d6095669-c962-4421-8f07-60b3af6268e0"
+      }
+    },
+    "owner": "s00ar"
   }
 }

@@ -41,11 +41,12 @@ export default function RootLayout() {
                 <Stack screenOptions={{ headerShown: false }}>
                   <Stack.Screen name="index" />
                   <Stack.Screen name="news" />
+                  <Stack.Screen name="news/[id]" />
                   <Stack.Screen name="search" />
                   <Stack.Screen name="calendar" />
                   <Stack.Screen name="contacts" />
                   <Stack.Screen name="notifications" />
-                  <Stack.Screen name="configuration" />
+                  <Stack.Screen name="settings" />
                   <Stack.Screen name="help" />
                 </Stack>
               </View>

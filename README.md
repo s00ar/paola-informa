@@ -48,3 +48,32 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Cloud Functions & Webhooks
+
+This project now includes Firebase Cloud Functions (see `functions/index.js`) that listen for changes in the `news` collection. When a document is created, updated, or deleted, the function:
+
+1. Posts a JSON payload to a configurable webhook (`WEBHOOK_URL` or `functions.config().webhook.news_url`).
+2. Broadcasts an FCM notification to the `news` topic so the app can update instantly.
+
+### Setup steps
+
+1. Install function dependencies:
+   ```bash
+   cd functions
+   npm install
+   ```
+2. Configure the webhook endpoint (replace the URL with your endpoint):
+   ```bash
+   firebase functions:config:set webhook.news_url="https://your-server.com/firestore-hook"
+   ```
+3. (Optional) Instead of Functions config, you can set an environment variable when deploying:
+   ```bash
+   WEBHOOK_URL="https://your-server.com/firestore-hook" firebase deploy --only functions
+   ```
+4. Deploy the Cloud Function:
+   ```bash
+   firebase deploy --only functions
+   ```
+5. Make sure your mobile clients subscribe to the `news` topic using FCM or Expo Notifications so they receive the push alerts emitted by the function.
+
+> Tip: If your webhook expects authentication, extend `postToWebhook` in `functions/index.js` to add the required headers or signatures before deployment.

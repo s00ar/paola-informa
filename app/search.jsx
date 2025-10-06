@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { View, TextInput, FlatList, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
 
 // Lista de funcionalidades de ejemplo
 const FEATURES = [
-    { id: '1', name: 'Noticias' },
-    { id: '2', name: 'Calendario' },
-    { id: '3', name: 'Contactos' },
-    { id: '4', name: 'Notificaciones' },
-    { id: '5', name: 'Configuración' },
-    { id: '6', name: 'Ayuda' },
+    { id: '1', name: 'Noticias', url: '/news' },
+    { id: '2', name: 'Calendario', url: '/calendar' },
+    { id: '3', name: 'Contactos', url: '/contacts' },
+    { id: '4', name: 'Notificaciones', url: '/notifications' },
+    { id: '5', name: 'Configuración', url: '/settings' },
+    { id: '6', name: 'Ayuda', url: '/help' },
 ];
 
 export default function SearchFeatures() {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState(FEATURES);
+    const router = useRouter();
 
     const handleSearch = (text) => {
         setQuery(text);
@@ -24,8 +26,11 @@ export default function SearchFeatures() {
     };
 
     const renderItem = ({ item }) => (
-        <TouchableOpacity style={styles.item}>
-            <Text style={styles.itemText}>{item.name}</Text>
+        <TouchableOpacity
+        style={styles.item}
+        onPress={() => router.push(item.url)} // ← Navegación real
+        >
+        <Text style={styles.itemText}>{item.name}</Text>
         </TouchableOpacity>
     );
 
