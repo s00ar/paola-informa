@@ -25,6 +25,7 @@ export default function RootLayout() {
   const handleHome = () => router.replace('/');
   const handleSearch = () => router.push('/search');
   const handleHelp = () => router.push('/help');
+  const handleMap = () => router.push('/map');
 
   const statusBarStyle = showSplash || isDarkMode ? 'light' : 'dark';
 
@@ -39,20 +40,22 @@ export default function RootLayout() {
               <AppHeader />
               <View style={{ flex: 1 }}>
                 <Stack screenOptions={{ headerShown: false }}>
-                  <Stack.Screen name="index" />
-                  <Stack.Screen name="news" />
-                  <Stack.Screen name="news/[id]" />
+                <Stack.Screen name="index" />
+                <Stack.Screen name="news/index" />
+                <Stack.Screen name="news/[id]" />
                   <Stack.Screen name="search" />
                   <Stack.Screen name="calendar" />
                   <Stack.Screen name="contacts" />
                   <Stack.Screen name="notifications" />
                   <Stack.Screen name="settings" />
                   <Stack.Screen name="help" />
+                  <Stack.Screen name="map" />
                 </Stack>
               </View>
               <Navbar
                 onHomePress={handleHome}
                 onSearchPress={handleSearch}
+                onMapPress={handleMap}
                 onHelpPress={handleHelp}
               />
             </>

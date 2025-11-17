@@ -3,26 +3,31 @@ import { useRouter } from 'expo-router';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const Navbar = () => {
-const router = useRouter();
+const Navbar = ({ onHomePress, onSearchPress, onMapPress, onHelpPress }) => {
+  const router = useRouter();
 
-const handleHome = () => router.replace('/');
-const handleSearch = () => router.push('/search');
-const handleHelp = () => router.push('/help');
-return (
+  const handleHome = () => (onHomePress ? onHomePress() : router.replace('/'));
+  const handleSearch = () => (onSearchPress ? onSearchPress() : router.push('/search'));
+  const handleMap = () => (onMapPress ? onMapPress() : router.push('/map'));
+  const handleHelp = () => (onHelpPress ? onHelpPress() : router.push('/help'));
+
+  return (
     <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={handleHome}>
-            <Text style={styles.text}>Inicio</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleSearch}>
-            <Ionicons name="search" size={24} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleHelp}>
-            <Text style={styles.text}>Ayuda</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleHome}>
+        <Text style={styles.text}>Inicio</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleSearch}>
+        <Ionicons name="search" size={24} color="black" />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleMap}>
+        <Ionicons name="map-outline" size={24} color="black" />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleHelp}>
+        <Text style={styles.text}>Ayuda</Text>
+      </TouchableOpacity>
     </View>
-    );
-}
+  );
+};
 
 const styles = StyleSheet.create({
     container: {

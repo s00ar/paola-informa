@@ -1,5 +1,5 @@
 ﻿import React, { useState } from 'react';
-import { ScrollView, View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { ScrollView, View, Image, StyleSheet, TouchableOpacity, Text, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
@@ -8,11 +8,12 @@ const LOGO = require('../assets/images/logo.png');
 const MENULIST = [
   { name: 'Inicio', icon: 'home-outline', route: '/' },
   { name: 'Noticias', icon: 'newspaper', route: '/news' },
+  { name: 'Mapa', icon: 'map-outline', route: '/map' },
   { name: 'Calendario', icon: 'calendar-outline', route: '/calendar' },
   { name: 'Contactos', icon: 'people-outline', route: '/contacts' },
   { name: 'Buscar', icon: 'search-outline', route: '/search' },
   { name: 'Notificaciones', icon: 'notifications-outline', route: '/notifications' },
-  { name: 'Configuración', icon: 'settings-outline', route: '/settings' },
+  { name: 'Configuraci\u00f3n', icon: 'settings-outline', route: '/settings' },
   { name: 'Ayuda', icon: 'help-circle-outline', route: '/help' },
 ];
 
@@ -50,7 +51,7 @@ const AppHeader = () => {
             <View style={{ flex: 1 }} />
             <TouchableOpacity
               accessibilityRole="button"
-              accessibilityLabel={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              accessibilityLabel={isMenuOpen ? 'Cerrar men\u00fa' : 'Abrir men\u00fa'}
               onPress={() => setMenuOpen((prev) => !prev)}
               style={styles.menuButton}
             >
@@ -80,6 +81,19 @@ const AppHeader = () => {
   );
 };
 
+const menuShadow = Platform.select({
+  web: {
+    boxShadow: '0px 8px 20px rgba(15, 53, 94, 0.12)',
+  },
+  default: {
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 2,
+  },
+});
+
 const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: '#fff',
@@ -108,11 +122,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 12,
     backgroundColor: '#f3f6fb',
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    elevation: 2,
+    ...menuShadow,
   },
   menuItem: {
     flexDirection: 'row',

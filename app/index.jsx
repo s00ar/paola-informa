@@ -1,9 +1,22 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
-import { ActivityIndicator, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Platform, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase';
+
+const cardShadow = Platform.select({
+  web: {
+    boxShadow: '0px 8px 20px rgba(15, 38, 80, 0.12)',
+  },
+  default: {
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 10,
+    elevation: 2,
+  },
+});
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -31,11 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 22,
     padding: 20,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 10,
-    elevation: 2,
+    ...cardShadow,
   },
   categoryPill: {
     alignSelf: 'flex-start',
