@@ -11,7 +11,6 @@ const MENULIST = [
   { name: 'Mapa', icon: 'map-outline', route: '/map' },
   { name: 'Calendario', icon: 'calendar-outline', route: '/calendar' },
   { name: 'Contactos', icon: 'people-outline', route: '/contacts' },
-  { name: 'Buscar', icon: 'search-outline', route: '/search' },
   { name: 'Notificaciones', icon: 'notifications-outline', route: '/notifications' },
   { name: 'Configuraci\u00f3n', icon: 'settings-outline', route: '/settings' },
   { name: 'Ayuda', icon: 'help-circle-outline', route: '/help' },

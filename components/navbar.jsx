@@ -1,29 +1,26 @@
 import React from 'react';
 import { useRouter } from 'expo-router';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const Navbar = ({ onHomePress, onSearchPress, onMapPress, onHelpPress }) => {
+const Navbar = ({ onHomePress, onCalendarPress, onMapPress }) => {
   const router = useRouter();
 
   const handleHome = () => (onHomePress ? onHomePress() : router.replace('/'));
-  const handleSearch = () => (onSearchPress ? onSearchPress() : router.push('/search'));
+  const handleCalendar = () =>
+    onCalendarPress ? onCalendarPress() : router.push('/calendar');
   const handleMap = () => (onMapPress ? onMapPress() : router.push('/map'));
-  const handleHelp = () => (onHelpPress ? onHelpPress() : router.push('/help'));
 
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={handleHome}>
-        <Text style={styles.text}>Inicio</Text>
+        <Ionicons name="home" size={24} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={handleSearch}>
-        <Ionicons name="search" size={24} color="black" />
+      <TouchableOpacity style={styles.button} onPress={handleCalendar}>
+        <Ionicons name="calendar-outline" size={24} color="black" />
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={handleMap}>
         <Ionicons name="map-outline" size={24} color="black" />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={handleHelp}>
-        <Text style={styles.text}>Ayuda</Text>
       </TouchableOpacity>
     </View>
   );
@@ -41,10 +38,6 @@ const styles = StyleSheet.create({
     },
     button: {
         padding: 10,
-    },
-    text: {
-        fontSize: 18,
-        color: 'black',
     },
 });
 

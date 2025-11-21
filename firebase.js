@@ -1,5 +1,6 @@
 ﻿import { Platform } from 'react-native';
 import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getAuth, signInAnonymously } from 'firebase/auth';
 import { getFirestore, initializeFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -24,5 +25,12 @@ if (Platform.OS !== 'web') {
   });
 }
 
+const auth = getAuth(app);
+
+signInAnonymously(auth).catch((err) => {
+  console.error('Firebase anonymous auth failed', err);
+});
+
 export const db = getFirestore(app);
+export { auth };
 export default app;
